@@ -1,24 +1,19 @@
 #!/bin/bash
 
 sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get -y dist-upgrade
 
 # firewall
 sudo apt-get -y install ufw
 sudo ufw allow 22
 sudo ufw enable
 
+# packages
+sudo apt-get -y install git parallel awscli p7zip-full
+
 # ssh
 sudo echo "AllowUsers ubuntu" >> /etc/ssh/sshd_config
 sudo echo "PermitRootLogin no" >> /etc/ssh/sshd_config
-
-# basic tools
-sudo apt-get -y install git parallel awscli p7zip-full
-sudo apt-get -y install r-base
-sudo apt-get -y install python-pip python-dev python-matplotlib \  
-                        python-numpy python-scipy python-sklearn python-pandas \ 
-                        ipython ipython-notebook \
-                        python-sympy python-nose
 
 # .bashrc
 bashrc=/home/ubuntu/.bashrc
@@ -34,7 +29,7 @@ echo set number >> $vimrc
 echo set expandtab >> $vimrc
 echo set tabstop=4 >> $vimrc
 echo set shiftwidth=4 >> $vimrc
-echo set smartindent on >> $vimrc
+echo set smartindent >> $vimrc
 
 # aws
 echo -e '\n\n'
